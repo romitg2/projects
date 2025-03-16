@@ -27,14 +27,12 @@ const UploadPage = () => {
     });
 
     const { url } = await response.json();
-    console.log("-------- url -------", url);
 
     // Upload file to S3
     try {
       const response = await axios.put(url, file, {
         headers: { "Content-Type": file.type },
         onUploadProgress: (progressEvent) => {
-          console.log("Upload Progress:", progressEvent.loaded * 100 / progressEvent.total!);
           setProgress(progressEvent.loaded * 100 / progressEvent.total!);
         },
       });
