@@ -10,6 +10,10 @@ export async function POST(req: NextRequest) {
     console.log(json);
     const validatedData = ProjectSchema.parse(json);
 
+    if(!validatedData) {
+      return NextResponse.json({ error: "Invalid data parsing error" }, { status: 400 });
+    }
+
     const newProject = new Project({
       ...validatedData,
       dateCreated: new Date()

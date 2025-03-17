@@ -1,5 +1,5 @@
+'use client'
 import { Button } from "@/components/ui/button";
-import { redirect } from "next/navigation";
 import Link from "next/link";
 
 export default function Home() {
@@ -7,7 +7,7 @@ export default function Home() {
 
   return (
     <>
-      <div>
+      <div className="h-screen w-screen flex items-center justify-center">
         <h1 className="text-4xl font-bold mb-4">Navigation</h1>
         <ul className="space-y-2">
           <li>
