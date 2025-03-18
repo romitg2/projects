@@ -33,12 +33,12 @@ export default function Project( project : { project: ProjectType }) {
                     </div>
                     <div className="mt-4 flex gap-3 text-sm text-blue-500">
                         {project.project.liveProjectLink && (
-                            <a href={project.liveProjectLink} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                            <a href={project.project.liveProjectLink} target="_blank" rel="noopener noreferrer" className="hover:underline">
                                 Live Demo
                             </a>
                         )}
                         {project.project.githubLink && (
-                            <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                            <a href={project.project.githubLink} target="_blank" rel="noopener noreferrer" className="hover:underline">
                                 GitHub
                             </a>
                         )}
