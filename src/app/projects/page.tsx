@@ -2,9 +2,11 @@
 import { useState, useEffect } from "react"
 import axios from 'axios'
 import { ProjectType } from "@/common/types";
+import Project from "@/components/project";
 
 export default function ProjectsPage() {
     const [projects, setProjects] = useState<ProjectType[] | null>(null);
+    const [columns, setColumns] = useState<number>(4);
 
     useEffect(() => {
         const fetchProjects = async () => {
@@ -20,19 +22,20 @@ export default function ProjectsPage() {
 
     return (
         <div>
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {projects?.map((project) => (
-                    <div key={project.id} className="bg-white rounded-lg shadow-lg p-6">
-                        {project.thumbnail && (
-                            <img
-                                src={project.thumbnail}
-                                alt={project.title}
-                                className="object-cover w-full h-64 rounded-t-lg"
-                            />
-                        )}
-                        <h2 className="text-2xl font-bold">{project.title}</h2>
-                        <p className="text-lg">{project.description}</p>
-                    </div>
+            <div>
+                <div className="flex items-center mb-4">
+                    <h1 className="text-2xl font-bold mr-4">Set columns:</h1>
+                    <input
+                        type="number"
+                        value={columns}
+                        onChange={(e) => setColumns(Number(e.target.value))}
+                        className="p-2 border border-gray-300 rounded-md"
+                    />
+                </div>
+            </div>
+            <div style={{ gridTemplateColumns: `repeat(${columns}, 1fr)` }} className="grid grid-cols-1 gap-6 mx-4 md:grid-cols-2 lg:grid-cols-2">
+                {projects?.map((project: ProjectType) => (
+                    <Project key={project.id} project={project} />
                 ))}
             </div>
         </div>
